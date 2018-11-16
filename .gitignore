@@ -4,4 +4,8 @@
 deployment.properties
 deployment.xml
 .idea/
+<<<<<<< HEAD
+=======
+README.md
+>>>>>>> 2465071eaca78fb47a6032f1bcbc48b5ddb14d03
 .DS_Store
