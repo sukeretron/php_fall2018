@@ -37,7 +37,7 @@ foo($e);
 echo $e->foo . PHP_EOL;
 
 // Cloning objects, and comparing them
-$user1 = new User(9);
+$user1 = new A(9);
 $user2 = clone $user1;
 
 echo 'The user objects are' . ($user1 == $user2 ? '' : ' not') . " equivalent.<br />";
