@@ -1,6 +1,7 @@
 <?php
 
 // BEWARE!!! This script is unsafe!!!
+// sqlmap -u http://localhost/database_sql_injection_1.php --wizard
 
 function getConnection()
 {
@@ -9,7 +10,7 @@ function getConnection()
     }
     
     if ($link === NULL) {
-        $link = mysqli_connect('localhost', 'lightmvcuser', 'testpass', 'lightmvctestdb');
+        $link = mysqli_connect('localhost', 'loginuser', 'testpass', 'andrew_session_app');
     }
     return $link;    
 }
@@ -30,13 +31,13 @@ function getQuote()
     return "'";
 }
 
-// SELECT `id`,`firstname`,`lastname` FROM `customers` WHERE x=y 
+// SELECT `id`,`username` FROM `users` WHERE x=y
 // $where = [key = column name, value = data]
 // $andOr = AND | OR
 function getCustomers()
 {
     $id = isset($_GET['id']) ? $_GET['id'] : '1';
-    $query = 'SELECT `id`,`firstname`,`lastname` FROM `customers` WHERE id = ' . $id;
+    $query = 'SELECT `id`,`username` FROM `users` WHERE id = ' . $id;
     $link = getConnection();
     $result = mysqli_query($link, $query);
     return mysqli_fetch_all($result);
@@ -56,6 +57,12 @@ foreach ($myArray as $tableRow) {
     $htmlOut .= "\t</tr>\n";
 }
 
-$htmlOut .= "</table>\n</body>\n</html>";
+$htmlOut .= "</table>\n";
+
+$getParam = $_GET['id'];
+
+$htmlOut .= "<p>$getParam</p>\n";
+
+$htmlOut .= "</body>\n</html>";
 
 echo $htmlOut;
